@@ -1,5 +1,4 @@
 import random
-import json
 import utils.utils as utils
 
 
@@ -150,6 +149,31 @@ class ClevrExecutor:
         self.modules['same_size'] = self.same_size
         self.modules['union'] = self.union
         self.modules['unique'] = self.unique
+        self.modules['subtraction'] = self.subtraction
+        self.modules['subtraction_set'] = self.subtraction_set
+        self.modules['subtraction_count_sets'] = self.subtraction_count_sets
+
+    def subtraction_set(self, scene1, scene2):
+        if type(scene1) == list and type(scene2) == list:
+            if len(scene2) == 0:
+                return 'error'
+            output = []
+            for o in scene1:
+                if o not in scene2:
+                    output.append(o)
+            return output
+        return 'error'
+
+    def subtraction_count_sets(self, scene1, scene2):
+        if type(scene1) == list and type(scene2) == list:
+            return len(scene1) - len(scene2)
+        return 'error'
+
+    def subtraction(self, integer1, integer2):
+        if type(integer1) == int and type(integer2) == int:
+            return integer1-integer2
+        return 'error'
+
         
     def count(self, scene, _):
         if type(scene) == list:
