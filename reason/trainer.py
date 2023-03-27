@@ -113,7 +113,7 @@ class Trainer():
             self.model.set_input(x, y)
             loss += self.model.supervised_forward()
             t += 1
-        return loss / t if t is not 0 else 0
+        return loss / t if t != 0 else 0
 
     def check_val_accuracy(self):
         reward = 0
@@ -123,7 +123,7 @@ class Trainer():
             pred = self.model.parse()
             reward += self.get_batch_reward(pred, ans, idx, 'val')
             t += 1
-        reward = reward / t if t is not 0 else 0
+        reward = reward / t if t != 0 else 0
         return reward 
 
     def get_batch_reward(self, programs, answers, image_idxs, split):
@@ -131,8 +131,10 @@ class Trainer():
         ans_np = answers.numpy()
         idx_np = image_idxs.numpy()
         reward = 0
+        use_attributes = self.vocab['mode'] == 'attribute'
         for i in range(pg_np.shape[0]):
-            pred = self.executor.run(pg_np[i], idx_np[i], split)
+            pred = self.executor.run(pg_np[i], idx_np[i], split,
+                    use_attributes=use_attributes)
             ans = self.vocab['answer_idx_to_token'][ans_np[i]]
             if pred == ans:
                 reward += 1.0
