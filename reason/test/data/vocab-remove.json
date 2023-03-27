@@ -43,7 +43,14 @@
     "remove": 14,
     "scene": 15,
     "sphere": 16,
-    "yellow": 17
+    "yellow": 17,
+    "exist": 18,
+    "same_shape": 19,
+    "unique": 20,
+    "filter_material": 21,
+    "filter_size": 22,
+    "metal": 23,
+    "large": 24
   },
   "answer_token_to_idx": {
     "<NULL>": 0,

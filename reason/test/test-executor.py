@@ -1,5 +1,7 @@
 import unittest
 from executors import ClevrExecutor
+import utils.utils as utils
+import utils.preprocess as preprocess
 
 class TestOriginalClevr(unittest.TestCase):
     data_path = 'data'
@@ -61,6 +63,25 @@ class TestAttributes(unittest.TestCase):
         vocab_json = '{}/vocab-remove.json'.format(self.data_path)
         self.executor = ClevrExecutor(scene_json, scene_json, vocab_json)
 
+    def test_encode_remove(self):
+        x = [6, 14, 13, 7, 14, 12, 16, 15, 2]
+        program = [ 'count','remove', 'red', 'cube', 'remove', 
+                'purple', 'sphere', 'scene', '<END>']
+        vocab_json = '{}/vocab-remove.json'.format(self.data_path)
+        vocab = utils.load_vocab(vocab_json)
+        tokens = preprocess.encode(program, vocab['program_token_to_idx'])
+
+        self.assertEquals(tokens, x)
+
+    def test_encode_original(self):
+        program = [ 'exist', 'same_shape', 'unique', 'filter_material', 
+                'metal', 'filter_size', 'large', 'scene', '<END>']
+        x = [18, 19, 20, 21, 23, 22, 24, 15, 2]
+        vocab_json = '{}/vocab-remove.json'.format(self.data_path)
+        vocab = utils.load_vocab(vocab_json)
+        tokens = preprocess.encode(program, vocab['program_token_to_idx'])
+
+        self.assertEquals(tokens, x)
 
     def test_remove_two(self):
         # count, remove, red, cube, remove, purple, sphere, scene, end
@@ -77,6 +98,16 @@ class TestAttributes(unittest.TestCase):
         split = 'val'
         ans = self.executor.run(x,index,split, use_attributes=True)
         self.assertEquals(ans, '2')
+
+    def test_attribute_with_exist_sameshape_unique_filter(self):
+        # exist, same_shape, unique, filter_material, metal,
+        # filter_size, large, scene
+        x = [18, 19, 20, 21, 23, 22, 24, 15, 2]
+        index = 0
+        split = 'val'
+        ans = self.executor.run(x,index,split, use_attributes=True)
+        self.assertEquals(ans, 'no')
+        pass
 
 
 if __name__ == '__main__':
