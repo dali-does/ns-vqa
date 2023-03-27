@@ -84,9 +84,12 @@ class ClevrExecutor:
                 elif token.startswith('subtract'):
                     current_scene = module(current_scene, ans)
                     ans = current_scene
-                elif token.startswith('remove'):
-                    ans = module(ans, attributes)
-                    attributes = []
+                elif token.startswith('remove') or token.startswith('filter'):
+                    if use_attributes:
+                        ans = module(ans, attributes)
+                        attributes = []
+                    else:
+                        ans = module(ans, temp)
                 else:
                     ans = module(ans, temp)
                 if ans == 'error':
@@ -164,7 +167,22 @@ class ClevrExecutor:
         self.modules['subtraction'] = self.subtraction
         self.modules['subtraction_set'] = self.subtraction_set
         self.modules['subtraction_count_sets'] = self.subtraction_count_sets
+        # attributes
         self.modules['remove'] = self.remove
+        self.modules['filter_material'] = self.filter
+        self.modules['filter_shape'] = self.filter
+        self.modules['filter_size'] = self.filter
+
+    def filter(self, scene, attributes):
+        if type(scene) == list and type(attributes) == list:
+            output = []
+            for o in scene:
+                for a in attributes:
+                    if a in o.values():
+                        output.append(o)
+            return output
+        return 'error'
+
 
     def remove(self, scene, attributes):
         if type(scene) == list and type(attributes) == list:
