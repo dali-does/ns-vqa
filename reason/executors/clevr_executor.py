@@ -157,6 +157,21 @@ class ClevrExecutor:
         self.modules['subtraction'] = self.subtraction
         self.modules['subtraction_set'] = self.subtraction_set
         self.modules['subtraction_count_sets'] = self.subtraction_count_sets
+        self.modules['remove'] = self.remove
+
+    def remove(self, scene, attributes):
+        if type(scene) == list and type(attributes) == list:
+            output = []
+            for o in scene:
+                matches = False
+                for a in attributes:
+                    if a in o.values():
+                        matches = True
+                if not matches:
+                    output.append(o)
+            return output
+        return 'error'
+
 
     def subtraction_set(self, scene1, scene2):
         if type(scene1) == list and type(scene2) == list:
