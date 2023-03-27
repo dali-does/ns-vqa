@@ -64,9 +64,11 @@ class ClevrExecutor:
 
         scene = self.scenes[split][index]
         self.exe_trace = []
+        current_scene = list(scene)
         for j in range(length):
             i = length - 1 - j
             token = self.vocab['program_idx_to_token'][x[i]]
+            # __import__('ipdb').set_trace(context=31)
             if token == 'scene':
                 if temp is not None:
                     ans = 'error'
@@ -77,6 +79,9 @@ class ClevrExecutor:
                 module = self.modules[token]
                 if token.startswith('same') or token.startswith('relate'):
                     ans = module(ans, scene)
+                elif token.startswith('subtract'):
+                    current_scene = module(current_scene, ans)
+                    ans = current_scene
                 else:
                     ans = module(ans, temp)
                 if ans == 'error':
@@ -155,8 +160,6 @@ class ClevrExecutor:
 
     def subtraction_set(self, scene1, scene2):
         if type(scene1) == list and type(scene2) == list:
-            if len(scene2) == 0:
-                return 'error'
             output = []
             for o in scene1:
                 if o not in scene2:
