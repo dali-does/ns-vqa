@@ -1,7 +1,10 @@
 import unittest
+import json
+
 from executors import ClevrExecutor
 import utils.utils as utils
 import utils.preprocess as preprocess
+from tools.preprocess_questions import program_to_str
 
 class TestOriginalClevr(unittest.TestCase):
     data_path = 'data'
@@ -107,8 +110,21 @@ class TestAttributes(unittest.TestCase):
         split = 'val'
         ans = self.executor.run(x,index,split, use_attributes=True)
         self.assertEquals(ans, 'no')
-        pass
 
+    def test_whole_chain_with_attributes_original(self):
+        vocab_json = '{}/vocab-remove.json'.format(self.data_path)
+        vocab = utils.load_vocab(vocab_json)
+
+        f = open('{}/orig-val.json'.format(self.data_path))
+        question = json.load(f)['questions'][0]
+        mode = vocab['mode']
+        program = program_to_str(question['program'], mode)
+        program = preprocess.tokenize(program)
+        tokens = preprocess.encode(program, vocab['program_token_to_idx'])
+        x = [1, 18, 19, 20, 21, 23, 22, 24, 15, 2]
+        f.close()
+
+        self.assertEquals(tokens, x)
 
 if __name__ == '__main__':
     unittest.main()

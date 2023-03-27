@@ -1,4 +1,5 @@
 {
+  "mode": "attribute",
   "question_token_to_idx": {
     "<NULL>": 0,
     "<START>": 1,
