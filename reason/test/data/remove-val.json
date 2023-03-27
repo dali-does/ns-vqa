@@ -1,0 +1,712 @@
+{
+  "info": {
+    "split": "val",
+    "license": "Creative Commons Attribution (CC BY 4.0)",
+    "version": "1.0",
+    "date": "2/14/2017"
+  },
+  "questions": [
+    {
+      "split": "val",
+      "image_filename": "CLEVR_val_000000.png",
+      "image_index": 0,
+      "image": "CLEVR_val_000000",
+      "question": "Remove all purple balls. Remove all red blocks. How many objects are left?",
+      "program": [
+        { "type": "scene", "inputs": [], "_output": [ 0, 1, 2, 3, 4 ], "value_inputs": [] },
+        { "type": "remove", "inputs": [ 0 ], "_output": [ 0, 1, 2, 4 ], "value_inputs": [ "purple", "sphere" ] },
+        { "type": "remove", "inputs": [ 1 ], "_output": [ 0, 1, 2, 4 ], "value_inputs": [ "red", "cube" ] },
+        { "type": "count", "inputs": [ 2 ], "_output": 4, "value_inputs": [] }
+      ],
+      "answer": 4,
+      "template_filename": "subtraction.json",
+      "question_family_index": 0,
+      "question_index": 0
+    },
+    {
+      "split": "val",
+      "image_filename": "CLEVR_val_000001.png",
+      "image_index": 1,
+      "image": "CLEVR_val_000001",
+      "question": "Remove all blue blocks. Remove all spheres. How many objects are left?",
+      "program": [
+        { "type": "scene", "inputs": [], "_output": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ], "value_inputs": [] },
+        { "type": "remove", "inputs": [ 0 ], "_output": [ 0, 1, 2, 3, 4, 5, 6, 8, 9 ], "value_inputs": [ "blue", "cube" ] },
+        { "type": "remove", "inputs": [ 1 ], "_output": [ 0, 1, 3, 4, 5, 6, 8, 9 ], "value_inputs": [ "sphere" ] },
+        { "type": "count", "inputs": [ 2 ], "_output": 8, "value_inputs": [] }
+      ],
+      "answer": 8,
+      "template_filename": "subtraction.json",
+      "question_family_index": 0,
+      "question_index": 1
+    },
+    {
+      "split": "val",
+      "image_filename": "CLEVR_val_000002.png",
+      "image_index": 2,
+      "image": "CLEVR_val_000002",
+      "question": "Remove all purple cylinders. Remove all blue cubes. How many objects are left?",
+      "program": [
+        {
+          "type": "scene",
+          "inputs": [],
+          "_output": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "value_inputs": []
+        },
+        {
+          "type": "remove",
+          "inputs": [
+            0
+          ],
+          "_output": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7
+          ],
+          "value_inputs": [
+            "purple",
+            "cylinder"
+          ]
+        },
+        {
+          "type": "remove",
+          "inputs": [
+            1
+          ],
+          "_output": [
+            0,
+            1,
+            3,
+            5,
+            6,
+            7
+          ],
+          "value_inputs": [
+            "blue",
+            "cube"
+          ]
+        },
+        {
+          "type": "count",
+          "inputs": [
+            2
+          ],
+          "_output": 6,
+          "value_inputs": []
+        }
+      ],
+      "answer": 6,
+      "template_filename": "subtraction.json",
+      "question_family_index": 0,
+      "question_index": 2
+    },
+    {
+      "split": "val",
+      "image_filename": "CLEVR_val_000003.png",
+      "image_index": 3,
+      "image": "CLEVR_val_000003",
+      "question": "Remove all purple balls. Remove all cylinders. How many objects are left?",
+      "program": [
+        {
+          "type": "scene",
+          "inputs": [],
+          "_output": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "value_inputs": []
+        },
+        {
+          "type": "remove",
+          "inputs": [
+            0
+          ],
+          "_output": [
+            0,
+            2,
+            3,
+            4,
+            6
+          ],
+          "value_inputs": [
+            "purple",
+            "sphere"
+          ]
+        },
+        {
+          "type": "remove",
+          "inputs": [
+            1
+          ],
+          "_output": [
+            0,
+            3
+          ],
+          "value_inputs": [
+            "cylinder"
+          ]
+        },
+        {
+          "type": "count",
+          "inputs": [
+            2
+          ],
+          "_output": 2,
+          "value_inputs": []
+        }
+      ],
+      "answer": 2,
+      "template_filename": "subtraction.json",
+      "question_family_index": 0,
+      "question_index": 3
+    },
+    {
+      "split": "val",
+      "image_filename": "CLEVR_val_000004.png",
+      "image_index": 4,
+      "image": "CLEVR_val_000004",
+      "question": "Remove all cylinders. Remove all gray spheres. How many objects are left?",
+      "program": [
+        {
+          "type": "scene",
+          "inputs": [],
+          "_output": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "value_inputs": []
+        },
+        {
+          "type": "remove",
+          "inputs": [
+            0
+          ],
+          "_output": [
+            0,
+            1,
+            4
+          ],
+          "value_inputs": [
+            "cylinder"
+          ]
+        },
+        {
+          "type": "remove",
+          "inputs": [
+            1
+          ],
+          "_output": [
+            0,
+            1
+          ],
+          "value_inputs": [
+            "gray",
+            "sphere"
+          ]
+        },
+        {
+          "type": "count",
+          "inputs": [
+            2
+          ],
+          "_output": 2,
+          "value_inputs": []
+        }
+      ],
+      "answer": 2,
+      "template_filename": "subtraction.json",
+      "question_family_index": 0,
+      "question_index": 4
+    },
+    {
+      "split": "val",
+      "image_filename": "CLEVR_val_000005.png",
+      "image_index": 5,
+      "image": "CLEVR_val_000005",
+      "question": "Remove all blue balls. Remove all cubes. How many objects are left?",
+      "program": [
+        {
+          "type": "scene",
+          "inputs": [],
+          "_output": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "value_inputs": []
+        },
+        {
+          "type": "remove",
+          "inputs": [
+            0
+          ],
+          "_output": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "value_inputs": [
+            "blue",
+            "sphere"
+          ]
+        },
+        {
+          "type": "remove",
+          "inputs": [
+            1
+          ],
+          "_output": [
+            1,
+            3,
+            5,
+            6
+          ],
+          "value_inputs": [
+            "cube"
+          ]
+        },
+        {
+          "type": "count",
+          "inputs": [
+            2
+          ],
+          "_output": 4,
+          "value_inputs": []
+        }
+      ],
+      "answer": 4,
+      "template_filename": "subtraction.json",
+      "question_family_index": 0,
+      "question_index": 5
+    },
+    {
+      "split": "val",
+      "image_filename": "CLEVR_val_000006.png",
+      "image_index": 6,
+      "image": "CLEVR_val_000006",
+      "question": "Remove all blue cubes. Remove all cylinders. How many objects are left?",
+      "program": [
+        {
+          "type": "scene",
+          "inputs": [],
+          "_output": [
+            0,
+            1,
+            2
+          ],
+          "value_inputs": []
+        },
+        {
+          "type": "remove",
+          "inputs": [
+            0
+          ],
+          "_output": [
+            1,
+            2
+          ],
+          "value_inputs": [
+            "blue",
+            "cube"
+          ]
+        },
+        {
+          "type": "remove",
+          "inputs": [
+            1
+          ],
+          "_output": [
+            1,
+            2
+          ],
+          "value_inputs": [
+            "cylinder"
+          ]
+        },
+        {
+          "type": "count",
+          "inputs": [
+            2
+          ],
+          "_output": 2,
+          "value_inputs": []
+        }
+      ],
+      "answer": 2,
+      "template_filename": "subtraction.json",
+      "question_family_index": 0,
+      "question_index": 6
+    },
+    {
+      "split": "val",
+      "image_filename": "CLEVR_val_000007.png",
+      "image_index": 7,
+      "image": "CLEVR_val_000007",
+      "question": "Remove all blue cylinders. Remove all gray balls. How many objects are left?",
+      "program": [
+        {
+          "type": "scene",
+          "inputs": [],
+          "_output": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "value_inputs": []
+        },
+        {
+          "type": "remove",
+          "inputs": [
+            0
+          ],
+          "_output": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "value_inputs": [
+            "blue",
+            "cylinder"
+          ]
+        },
+        {
+          "type": "remove",
+          "inputs": [
+            1
+          ],
+          "_output": [
+            0,
+            1,
+            2
+          ],
+          "value_inputs": [
+            "gray",
+            "sphere"
+          ]
+        },
+        {
+          "type": "count",
+          "inputs": [
+            2
+          ],
+          "_output": 3,
+          "value_inputs": []
+        }
+      ],
+      "answer": 3,
+      "template_filename": "subtraction.json",
+      "question_family_index": 0,
+      "question_index": 7
+    },
+    {
+      "split": "val",
+      "image_filename": "CLEVR_val_000008.png",
+      "image_index": 8,
+      "image": "CLEVR_val_000008",
+      "question": "Remove all purple spheres. Remove all brown cubes. How many objects are left?",
+      "program": [
+        {
+          "type": "scene",
+          "inputs": [],
+          "_output": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "value_inputs": []
+        },
+        {
+          "type": "remove",
+          "inputs": [
+            0
+          ],
+          "_output": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            7,
+            8
+          ],
+          "value_inputs": [
+            "purple",
+            "sphere"
+          ]
+        },
+        {
+          "type": "remove",
+          "inputs": [
+            1
+          ],
+          "_output": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            7,
+            8
+          ],
+          "value_inputs": [
+            "brown",
+            "cube"
+          ]
+        },
+        {
+          "type": "count",
+          "inputs": [
+            2
+          ],
+          "_output": 7,
+          "value_inputs": []
+        }
+      ],
+      "answer": 7,
+      "template_filename": "subtraction.json",
+      "question_family_index": 0,
+      "question_index": 8
+    },
+    {
+      "split": "val",
+      "image_filename": "CLEVR_val_000009.png",
+      "image_index": 9,
+      "image": "CLEVR_val_000009",
+      "question": "Remove all cylinders. Remove all spheres. How many objects are left?",
+      "program": [
+        {
+          "type": "scene",
+          "inputs": [],
+          "_output": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "value_inputs": []
+        },
+        {
+          "type": "remove",
+          "inputs": [
+            0
+          ],
+          "_output": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6,
+            7
+          ],
+          "value_inputs": [
+            "cylinder"
+          ]
+        },
+        {
+          "type": "remove",
+          "inputs": [
+            1
+          ],
+          "_output": [
+            0,
+            2,
+            4,
+            6,
+            7
+          ],
+          "value_inputs": [
+            "sphere"
+          ]
+        },
+        {
+          "type": "count",
+          "inputs": [
+            2
+          ],
+          "_output": 5,
+          "value_inputs": []
+        }
+      ],
+      "answer": 5,
+      "template_filename": "subtraction.json",
+      "question_family_index": 0,
+      "question_index": 9
+    },
+    {
+      "split": "val",
+      "image_filename": "CLEVR_val_000010.png",
+      "image_index": 10,
+      "image": "CLEVR_val_000010",
+      "question": "Remove all green cylinders. Remove all purple cubes. How many objects are left?",
+      "program": [
+        {
+          "type": "scene",
+          "inputs": [],
+          "_output": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "value_inputs": []
+        },
+        {
+          "type": "remove",
+          "inputs": [
+            0
+          ],
+          "_output": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "value_inputs": [
+            "green",
+            "cylinder"
+          ]
+        },
+        {
+          "type": "remove",
+          "inputs": [
+            1
+          ],
+          "_output": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "value_inputs": [
+            "purple",
+            "cube"
+          ]
+        },
+        {
+          "type": "count",
+          "inputs": [
+            2
+          ],
+          "_output": 4,
+          "value_inputs": []
+        }
+      ],
+      "answer": 4,
+      "template_filename": "subtraction.json",
+      "question_family_index": 0,
+      "question_index": 10
+    },
+    {
+      "split": "val",
+      "image_filename": "CLEVR_val_000011.png",
+      "image_index": 11,
+      "image": "CLEVR_val_000011",
+      "question": "Remove all brown blocks. Remove all brown cylinders. How many objects are left?",
+      "program": [
+        {
+          "type": "scene",
+          "inputs": [],
+          "_output": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "value_inputs": []
+        },
+        {
+          "type": "remove",
+          "inputs": [
+            0
+          ],
+          "_output": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "value_inputs": [
+            "brown",
+            "cube"
+          ]
+        },
+        {
+          "type": "remove",
+          "inputs": [
+            1
+          ],
+          "_output": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "value_inputs": [
+            "brown",
+            "cylinder"
+          ]
+        },
+        {
+          "type": "count",
+          "inputs": [
+            2
+          ],
+          "_output": 4,
+          "value_inputs": []
+        }
+      ],
+      "answer": 4,
+      "template_filename": "subtraction.json",
+      "question_family_index": 0,
+      "question_index": 11
+    }
+  ]
+}
