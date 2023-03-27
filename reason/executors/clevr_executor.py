@@ -47,7 +47,7 @@ class ClevrExecutor:
         self.modules = {}
         self._register_modules()
     
-    def run(self, x, index, split, guess=False, debug=False):
+    def run(self, x, index, split, guess=False, debug=False, use_attributes=False):
         assert self.modules and self.scenes, 'Must have scene annotations and define modules first'
         assert split == 'train' or split == 'val'
 
@@ -65,6 +65,8 @@ class ClevrExecutor:
         scene = self.scenes[split][index]
         self.exe_trace = []
         current_scene = list(scene)
+        if use_attributes:
+            attributes = []
         for j in range(length):
             i = length - 1 - j
             token = self.vocab['program_idx_to_token'][x[i]]
@@ -82,10 +84,15 @@ class ClevrExecutor:
                 elif token.startswith('subtract'):
                     current_scene = module(current_scene, ans)
                     ans = current_scene
+                elif token.startswith('remove'):
+                    ans = module(ans, attributes)
+                    attributes = []
                 else:
                     ans = module(ans, temp)
                 if ans == 'error':
                     break
+            elif use_attributes and token != '<END>':
+                attributes.append(token)
             self.exe_trace.append(ans)
             if debug:
                 print(token)
@@ -163,11 +170,11 @@ class ClevrExecutor:
         if type(scene) == list and type(attributes) == list:
             output = []
             for o in scene:
-                matches = False
+                nr_matches = 0
                 for a in attributes:
                     if a in o.values():
-                        matches = True
-                if not matches:
+                        nr_matches += 1
+                if nr_matches != len(attributes):
                     output.append(o)
             return output
         return 'error'
