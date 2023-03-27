@@ -15,7 +15,7 @@ import utils.utils as utils
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--mode', default='prefix',
-                    choices=['chain', 'prefix', 'postfix'])
+                    choices=['attribute','chain', 'prefix', 'postfix'])
 parser.add_argument('--input_questions_json', required=True)
 parser.add_argument('--input_vocab_json', default='')
 parser.add_argument('--expand_vocab', default=0, type=int)
@@ -31,6 +31,9 @@ def program_to_str(program, mode):
         if not program_utils.is_chain(program):
             return None
         return program_utils.list_to_str(program)
+    elif mode == 'attribute':
+        program_prefix = program_utils.list_to_prefix(program)
+        return program_utils.list_to_attributes(program_prefix)
     elif mode == 'prefix':
         program_prefix = program_utils.list_to_prefix(program)
         return program_utils.list_to_str(program_prefix)
@@ -69,6 +72,7 @@ def main(args):
                 all_program_strs.append(program_str)
         program_token_to_idx = preprocess_utils.build_vocab(all_program_strs)
         vocab = {
+            'mode': args.mode,
             'question_token_to_idx': question_token_to_idx,
             'program_token_to_idx': program_token_to_idx,
             'answer_token_to_idx': answer_token_to_idx,
@@ -126,7 +130,7 @@ def main(args):
             programs_encoded.append(program_encoded)
 
         if 'answer' in q:
-            answers.append(vocab['answer_token_to_idx'][q['answer']])
+            answers.append(vocab['answer_token_to_idx'][str(q['answer'])])
 
     # Pad encoded questions and programs
     max_question_length = max(len(x) for x in questions_encoded)

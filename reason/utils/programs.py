@@ -20,8 +20,13 @@ def is_chain(program_list):
 
 def list_to_tree(program_list):
     def build_subtree(cur):
+        function_name = ''
+        if 'function' in cur:
+            function_name = 'function'
+        else:
+            function_name = 'type'
         return {
-            'function': cur['function'],
+            'function': cur[function_name],
             'value_inputs': [x for x in cur['value_inputs']],
             'inputs': [build_subtree(program_list[i]) for i in cur['inputs']],
         }
@@ -51,7 +56,7 @@ def tree_to_postfix(program_tree):
         for node in cur['inputs']:
             helper(node)
         output.append({
-            'function': cur['function'],
+            'function': cur['type'],
             'value_inputs': [x for x in cur['value_inputs']],
         })
     helper(program_tree)
@@ -134,6 +139,16 @@ def str_to_function(s):
         'value_inputs': value_str.split(','),
     }
 
+
+def function_to_str_with_attributes(f):
+    return [f['function']] + f['value_inputs']
+
+def flatten_list(l):
+    return [item for sublist in l for item in sublist]
+
+def list_to_attributes(program_list):
+    tokens = [function_to_str_with_attributes(f) for f in program_list]
+    return ' '.join(flatten_list(tokens))
 
 def list_to_str(program_list):
     return ' '.join(function_to_str(f) for f in program_list)
